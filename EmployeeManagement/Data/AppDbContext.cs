@@ -56,6 +56,7 @@ namespace EmployeeManagement.Data
                     Email = "super@admin.com",
                     PasswordHash = passwordHash,
                     PasswordSalt = passwordSalt,
+                    //Password = password,
                     Phone = "1234567",
                     Role = "S"
                 },
@@ -66,6 +67,7 @@ namespace EmployeeManagement.Data
                     Email = "john@doe.com",
                     PasswordHash = passwordHash,
                     PasswordSalt = passwordSalt,
+                    //Password = password,
                     Phone = "1234567",
                     Role = "W"
                 }

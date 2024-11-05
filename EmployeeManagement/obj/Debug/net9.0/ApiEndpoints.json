@@ -1,15 +1,20 @@
 [
   {
     "ContainingType": "EmployeeManagement.Controllers.AuthController",
-    "Method": "GetUserById",
+    "Method": "Register",
     "RelativePath": "api/Auth/{id}",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
     "Parameters": [
       {
+        "Name": "request",
+        "Type": "EmployeeManagement.Dto.RegisterDto",
+        "IsRequired": true
+      },
+      {
         "Name": "id",
-        "Type": "System.Int32",
+        "Type": "",
         "IsRequired": true
       }
     ],
@@ -34,17 +39,22 @@
     "Order": 0,
     "Parameters": [
       {
-        "Name": "email",
-        "Type": "System.String",
-        "IsRequired": false
-      },
-      {
-        "Name": "password",
-        "Type": "System.String",
-        "IsRequired": false
+        "Name": "request",
+        "Type": "EmployeeManagement.Dto.LoginDto",
+        "IsRequired": true
       }
     ],
-    "ReturnTypes": []
+    "ReturnTypes": [
+      {
+        "Type": "System.String",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
   },
   {
     "ContainingType": "EmployeeManagement.Controllers.AuthController",
@@ -55,27 +65,22 @@
     "Order": 0,
     "Parameters": [
       {
-        "Name": "user",
-        "Type": "EmployeeManagement.Models.User",
+        "Name": "request",
+        "Type": "EmployeeManagement.Dto.RegisterDto",
         "IsRequired": true
-      },
-      {
-        "Name": "password",
-        "Type": "System.String",
-        "IsRequired": false
-      },
-      {
-        "Name": "title",
-        "Type": "System.String",
-        "IsRequired": false
-      },
-      {
-        "Name": "categoryId",
-        "Type": "System.Int32",
-        "IsRequired": false
       }
     ],
-    "ReturnTypes": []
+    "ReturnTypes": [
+      {
+        "Type": "EmployeeManagement.Models.User",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
   },
   {
     "ContainingType": "EmployeeManagement.Controllers.CategoryController",

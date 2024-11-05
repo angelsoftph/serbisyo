@@ -1,7 +1,13 @@
 using EmployeeManagement.Data;
+using EmployeeManagement.Models;
 using EmployeeManagement.Repositories;
+using EmployeeManagement.Services;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
+using Microsoft.IdentityModel.Tokens;
+using System.Text;
 
 namespace EmployeeManagement
 {
@@ -31,6 +37,29 @@ namespace EmployeeManagement
             builder.Services.AddScoped<ICategoryRepository, CategoryRepository>();
             builder.Services.AddScoped<IAuthRepository, AuthRepository>();
 
+
+
+
+            builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+                .AddJwtBearer(options =>
+                {
+                    options.TokenValidationParameters = new TokenValidationParameters
+                    {
+                        ValidateIssuerSigningKey = true,
+                        IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(builder.Configuration["JwtSettings:Secret"])),
+                        ValidateIssuer = false,
+                        ValidateAudience = false
+                    };
+                });
+
+            builder.Services.AddAuthorization();
+            builder.Services.AddScoped<IAuthService, AuthService>();
+
+
+
+
+
+
             builder.Services.AddControllers();
 
             builder.Services.AddEndpointsApiExplorer();
@@ -50,6 +79,9 @@ namespace EmployeeManagement
             }
 
             app.UseCors("MyCors");
+
+            app.UseAuthentication();
+            app.UseAuthorization();
 
             app.MapControllers();
 
