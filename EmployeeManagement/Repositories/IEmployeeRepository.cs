@@ -6,7 +6,8 @@ namespace EmployeeManagement.Repositories
     public interface IEmployeeRepository
     {
         Task<IEnumerable<ViewEmployeeDto>> GetAllAsync();
-        Task<IEnumerable<Employee>> GetEmployeesByCategoryIdAsync(int categoryId);
+
+        Task<IEnumerable<ViewEmployeeDto>> GetEmployeesByCategoryIdAsync(int categoryId);
 
         Task<ViewEmployeeDto> GetEmployeeByIdAsync(int id);
 

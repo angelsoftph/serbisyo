@@ -45,11 +45,9 @@ namespace EmployeeManagement.Controllers
         }
 
         [HttpGet("category/{categoryId}")]
-        public async Task<ActionResult<Employee>> GetEmployeesByCategoryId(int categoryId)
+        public async Task<IEnumerable<ViewEmployeeDto>> GetEmployeesByCategoryId(int categoryId)
         {
-            var employees = await _employeeRepository.GetEmployeesByCategoryIdAsync(categoryId);
-
-            return Ok(employees);
+            return await _employeeRepository.GetEmployeesByCategoryIdAsync(categoryId);
         }
 
         [HttpDelete("{id}")]

@@ -68,13 +68,15 @@ namespace EmployeeManagement.Repositories
             return employee?.Adapt<ViewEmployeeDto>();
         }
 
-        public async Task<IEnumerable<Employee>> GetEmployeesByCategoryIdAsync(int categoryId)
+        public async Task<IEnumerable<ViewEmployeeDto>> GetEmployeesByCategoryIdAsync(int categoryId)
         {
-            return await _context.Employees
+            var employees = await _context.Employees
                 .Include(e => e.Category)
                 .Include(e => e.User)
                 .Where(e => e.CategoryId == categoryId)
                 .ToListAsync();
+
+            return employees.Adapt<IEnumerable<ViewEmployeeDto>>();
         }
 
         public async Task UpdateEmployeeAsync(int id, UpdateEmployeeDto employeeDto)
