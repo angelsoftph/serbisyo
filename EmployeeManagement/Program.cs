@@ -36,9 +36,7 @@ namespace EmployeeManagement
             builder.Services.AddScoped<IEmployeeRepository, EmployeeRepository>();
             builder.Services.AddScoped<ICategoryRepository, CategoryRepository>();
             builder.Services.AddScoped<IAuthRepository, AuthRepository>();
-
-
-
+            builder.Services.AddScoped<IUserRepository, UserRepository>();
 
             builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
                 .AddJwtBearer(options =>
@@ -54,11 +52,6 @@ namespace EmployeeManagement
 
             builder.Services.AddAuthorization();
             builder.Services.AddScoped<IAuthService, AuthService>();
-
-
-
-
-
 
             builder.Services.AddControllers();
 

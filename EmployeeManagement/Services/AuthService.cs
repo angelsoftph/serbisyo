@@ -42,10 +42,9 @@ namespace EmployeeManagement.Services
 
         public async Task<string> Login(LoginDto request)
         {
-            var user = await _context.Users.SingleOrDefaultAsync(x => x.Email == request.Email);
+            var user = await _context.Users.FirstOrDefaultAsync(x => x.Email == request.Email);
             if (user == null || !VerifyPasswordHash(request.Password, user.PasswordHash, user.PasswordSalt))
             {
-                //throw new UnauthorizedAccessException("Invalid credentials");
                 return null;
             }
 

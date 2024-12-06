@@ -36,6 +36,10 @@ namespace EmployeeManagement.Data
                 .Property(c => c.ParentId)
                 .HasDefaultValue(0);
 
+            modelBuilder.Entity<User>()
+                .HasIndex(u => u.Email)
+                .IsUnique();
+
             modelBuilder.Entity<Category>().HasData(
                 new Category { Id = 1, Name = "Carpenter", ParentId = 0 },
                 new Category { Id = 2, Name = "Driver", ParentId = 0 },
@@ -56,7 +60,6 @@ namespace EmployeeManagement.Data
                     Email = "super@admin.com",
                     PasswordHash = passwordHash,
                     PasswordSalt = passwordSalt,
-                    //Password = password,
                     Phone = "1234567",
                     Role = "S"
                 },
@@ -67,7 +70,6 @@ namespace EmployeeManagement.Data
                     Email = "john@doe.com",
                     PasswordHash = passwordHash,
                     PasswordSalt = passwordSalt,
-                    //Password = password,
                     Phone = "1234567",
                     Role = "W"
                 }
